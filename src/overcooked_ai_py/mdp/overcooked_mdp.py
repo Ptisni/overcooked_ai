@@ -1169,6 +1169,7 @@ class OvercookedGridworld(object):
                 # Cooking soup
                 if self.soup_to_be_cooked_at_location(new_state, i_pos):
                     soup = new_state.get_object(i_pos)
+                    print(soup.ingredients, flush=True)
                     if soup.ingredients==3:
                         soup.begin_cooking()
             
