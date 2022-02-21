@@ -449,8 +449,8 @@ class SoupState(ObjectState):
     def begin_cooking(self):
         if not self.is_idle:
             raise ValueError("Cannot begin cooking this soup at this time")
-        if len(self.ingredients) != 3:
-            raise ValueError("Must have 3 ingredients in soup before you can begin cooking")
+        if len(self.ingredients) == 0:
+            raise ValueError("You can't cook nothing")
         self._cooking_tick = 0
 
     def cook(self):
@@ -1169,7 +1169,8 @@ class OvercookedGridworld(object):
                 # Cooking soup
                 if self.soup_to_be_cooked_at_location(new_state, i_pos):
                     soup = new_state.get_object(i_pos)
-                    soup.begin_cooking()
+                    if soup.ingredients==3:
+                        soup.begin_cooking()
             
             elif terrain_type == 'P' and player.has_object():
 
