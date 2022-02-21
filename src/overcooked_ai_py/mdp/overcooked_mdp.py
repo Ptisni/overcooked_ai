@@ -449,8 +449,8 @@ class SoupState(ObjectState):
     def begin_cooking(self):
         if not self.is_idle:
             raise ValueError("Cannot begin cooking this soup at this time")
-        if len(self.ingredients) == 0:
-            raise ValueError("Must add at least one ingredient to soup before you can begin cooking")
+        if len(self.ingredients) != 3:
+            raise ValueError("Must have 3 ingredients in soup before you can begin cooking")
         self._cooking_tick = 0
 
     def cook(self):
